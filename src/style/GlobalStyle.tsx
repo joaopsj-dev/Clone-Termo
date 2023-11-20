@@ -1,4 +1,5 @@
 import { createGlobalStyle } from "styled-components";
+import { colorVariables } from "./colorVariables";
 
 const GlobalStyle = createGlobalStyle`
 
@@ -15,7 +16,7 @@ const GlobalStyle = createGlobalStyle`
   body{
     font-size: 62.5%;
     height: 100vh;
-    background-color: #615458;
+    background-color: ${colorVariables.background};
 
     display: flex;
     align-items: center;
