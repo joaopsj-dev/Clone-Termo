@@ -1,3 +1,4 @@
+import { Game } from './components/game'
 import GlobalStyle from './style/GlobalStyle'
 
 function App() {
@@ -5,6 +6,7 @@ function App() {
   return (
     <>
       <GlobalStyle/>
+      <Game/>
     </>
   )
 }
