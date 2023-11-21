@@ -62,11 +62,6 @@ export function Game() {
     setResetGame
   }
 
-  React.useEffect(() => {
-    console.log(resetGame);
-    
-  }, [rowsValue]);
-
   function generateWord() {
     const randomWord = words[Math.floor(Math.random() * words.length)];
 
@@ -74,8 +69,6 @@ export function Game() {
     if (!regex.test(randomWord)) {
       return generateWord();
     }     
-    console.log(randomWord);
-    
     setRandomWord(randomWord.toUpperCase());
   }
 
@@ -95,11 +88,17 @@ export function Game() {
     generateWord();
   }
 
+  function handleKeyDown(event: React.KeyboardEvent) {
+    if (event.code === "Enter") {
+      play();
+    }
+  }
+
   return (
   <S.Game>
    <GameContext.Provider value={valueContextFactory}>
     <Text attempt={attempt} isFinaly={isFinaly} word={randomWord} key={10}/>
-    <ul>
+    <ul onKeyDown={handleKeyDown}>
       <Row rowIndex={0} key={0}/>
       <Row rowIndex={1} key={1}/>
       <Row rowIndex={2} key={2}/>
