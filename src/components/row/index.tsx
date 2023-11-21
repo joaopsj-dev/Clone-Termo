@@ -11,7 +11,7 @@ interface RowProps {
 export function Row(props: RowProps) {
   const [ cellsBackgroud, setCellsBackgroud ] = React.useState(["","","","",""])
 
-  const { attempt, randomWord, rowsValue, setIsFinaly }: GameContextValue = React.useContext(GameContext) as GameContextValue
+  const { resetGame ,attempt, randomWord, rowsValue, setIsFinaly }: GameContextValue = React.useContext(GameContext) as GameContextValue
 
   function checkedWin() {
     let newBackgroundCells = ["","","","",""]
@@ -42,6 +42,12 @@ export function Row(props: RowProps) {
       checkedWin();
     }
   }, [attempt]);
+
+  React.useEffect(() => {
+    if (resetGame) {
+      setCellsBackgroud(["","","","",""])
+    }
+  }, [resetGame]);
 
   return (
     <S.Row>
