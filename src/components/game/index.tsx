@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import * as S from './styled'
+import { Row } from '../row'
 
 export interface RowValue {
   0: string
@@ -11,10 +12,12 @@ export interface RowValue {
 }
 
 export interface GameContextValue {
+  randomWord: string
   attempt: number
   rowsValue: RowValue[]
   resetGame: boolean
   inputToFocus: number
+  setIsFinaly: React.Dispatch<React.SetStateAction<boolean>>
   setInputToFocus: React.Dispatch<React.SetStateAction<number>>
   setRowsValue: React.Dispatch<React.SetStateAction<RowValue[]>>
 }
@@ -31,16 +34,21 @@ export function Game() {
     {0: '', 1: '', 2: '', 3: '', 4: '', 5: ''}
   ])
 
+  const [randomWord, setRandomWord] = useState("");
+
   const [ attempt, setAttempt ] = useState(0)
   const [ inputToFocus, setInputToFocus ] = useState(0)
+  const [ isFinaly, setIsFinaly ] = useState(false)
   const [ resetGame, setResetGame ] = useState(false)
 
   const valueContextFactory: GameContextValue = {
+    randomWord,
     attempt,
     rowsValue,
-    setRowsValue,
     resetGame,
     inputToFocus,
+    setIsFinaly,
+    setRowsValue,
     setInputToFocus
   }
 

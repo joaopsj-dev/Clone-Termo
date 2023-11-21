@@ -24,6 +24,7 @@ export function Cell(props: CellProps) {
   React.useEffect(() => {
     if (resetGame) {
       setValue("");
+      setRowsValue(rows => changeCellValue(rows, props.rowIndex, props.cellIndex, ''))
     }
   }, [resetGame]);
 
@@ -66,7 +67,7 @@ export function Cell(props: CellProps) {
     value={value}
     ref={inputRef}
     disabled={props.rowIndex !== attempt}
-    $background={props.background}
+    $background={resetGame ? '' : props.background}
     onKeyDown={handleKeyDown}
     onClick={() => setInputToFocus(props.cellIndex)}
     onChange={() => {}}
