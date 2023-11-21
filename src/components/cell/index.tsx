@@ -1,5 +1,6 @@
 import React from 'react'
 import * as S from './styled'
+
 import { GameContext, GameContextValue, RowValue } from '../game'
 
 interface CellProps {

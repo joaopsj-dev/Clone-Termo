@@ -1,8 +1,10 @@
 import React from 'react'
 import * as S from './styled'
-import { GameContext, GameContextValue } from '../game'
-import { colorVariables } from '../../style/colorVariables'
+
 import { Cell } from '../cell'
+
+import { colorVariables } from '../../style/colorVariables'
+import { GameContext, GameContextValue } from '../game'
 
 interface RowProps {
   rowIndex: number

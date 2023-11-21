@@ -1,9 +1,11 @@
-import React, { useState } from 'react'
+import React from 'react'
 import * as S from './styled'
-import { Button } from '../button'
-import words from '../../utils/word'
+
 import { Row } from '../row'
 import { Text } from '../text'
+import { Button } from '../button'
+
+import words from '../../utils/word'
 
 export interface RowValue {
   0: string
@@ -32,7 +34,7 @@ export type Finaly = 'Win' | 'Lose' | null
 
 export function Game() {
 
-  const [randomWord, setRandomWord] = useState("");
+  const [randomWord, setRandomWord] = React.useState("");
 
   React.useEffect(() => {
     generateWord();
@@ -46,10 +48,10 @@ export function Game() {
     {0: '', 1: '', 2: '', 3: '', 4: ''}
   ])
 
-  const [ attempt, setAttempt ] = useState(0)
-  const [ inputToFocus, setInputToFocus ] = useState(0)
-  const [ isFinaly, setIsFinaly ] = useState<Finaly>(null)
-  const [ resetGame, setResetGame ] = useState(false)
+  const [ attempt, setAttempt ] = React.useState(0)
+  const [ inputToFocus, setInputToFocus ] = React.useState(0)
+  const [ isFinaly, setIsFinaly ] = React.useState<Finaly>(null)
+  const [ resetGame, setResetGame ] = React.useState(false)
 
   const valueContextFactory: GameContextValue = {
     isFinaly,
