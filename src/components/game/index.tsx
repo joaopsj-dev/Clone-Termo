@@ -17,12 +17,14 @@ export interface GameContextValue {
   rowsValue: RowValue[]
   resetGame: boolean
   inputToFocus: number
-  setIsFinaly: React.Dispatch<React.SetStateAction<boolean>>
+  setIsFinaly: React.Dispatch<React.SetStateAction<Finaly>>
   setInputToFocus: React.Dispatch<React.SetStateAction<number>>
   setRowsValue: React.Dispatch<React.SetStateAction<RowValue[]>>
 }
 
 export const GameContext = React.createContext({});
+
+type Finaly = 'Win' | 'Lose' | null
 
 export function Game() {
 
@@ -38,7 +40,7 @@ export function Game() {
 
   const [ attempt, setAttempt ] = useState(0)
   const [ inputToFocus, setInputToFocus ] = useState(0)
-  const [ isFinaly, setIsFinaly ] = useState(false)
+  const [ isFinaly, setIsFinaly ] = useState<Finaly>(null)
   const [ resetGame, setResetGame ] = useState(false)
 
   const valueContextFactory: GameContextValue = {

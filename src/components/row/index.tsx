@@ -31,9 +31,9 @@ export function Row(props: RowProps) {
     setCellsBackgroud(newBackgroundCells)
 
     if (randomWord === rowValue) {
-      setIsFinaly(true);
+      setIsFinaly('Win');
     } else if (randomWord !== rowValue && attempt >= 5) {
-      setIsFinaly(true);
+      setIsFinaly('Lose');
     }
   }
 
