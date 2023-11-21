@@ -20,14 +20,4 @@ export const Game = styled.div`
     flex-direction: column;
     gap: 2px;
   }
-
-  button {
-    font-weight: 800;
-    color: white;
-    border: none;
-    background-color: #312a2c;
-
-    padding: 10px;
-    border-radius: 5px;
-  }
 `;
