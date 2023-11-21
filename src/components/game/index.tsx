@@ -73,8 +73,6 @@ export function Game() {
     if (!regex.test(randomWord)) {
       return generateWord();
     }     
-    console.log(randomWord);
-    
     setRandomWord(randomWord.toUpperCase());
   }
 
