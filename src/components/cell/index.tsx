@@ -19,7 +19,7 @@ export function Cell(props: CellProps) {
   const [ value, setValue ] = React.useState("")
   const inputRef = React.useRef<HTMLInputElement>(null);
 
-  const { attempt, resetGame, inputToFocus, setRowsValue, setInputToFocus, setResetGame }: GameContextValue = React.useContext(GameContext) as GameContextValue
+  const { attempt, isFinaly,resetGame, inputToFocus, setRowsValue, setInputToFocus, setResetGame }: GameContextValue = React.useContext(GameContext) as GameContextValue
 
   React.useEffect(() => {
     if (resetGame) {
@@ -65,7 +65,7 @@ export function Cell(props: CellProps) {
     <S.Cell
     value={value}
     ref={inputRef}
-    disabled={props.rowIndex !== attempt}
+    disabled={props.rowIndex !== attempt || !!isFinaly}
     $background={props.background}
     onKeyDown={handleKeyDown}
     onClick={() => setInputToFocus(props.cellIndex)}

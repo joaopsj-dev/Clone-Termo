@@ -15,6 +15,7 @@ export interface RowValue {
 
 export interface GameContextValue {
   randomWord: string
+  isFinaly: Finaly
   attempt: number
   rowsValue: RowValue[]
   resetGame: boolean
@@ -51,6 +52,7 @@ export function Game() {
   const [ resetGame, setResetGame ] = useState(false)
 
   const valueContextFactory: GameContextValue = {
+    isFinaly,
     randomWord,
     attempt,
     rowsValue,
@@ -69,10 +71,14 @@ export function Game() {
     if (!regex.test(randomWord)) {
       return generateWord();
     }     
+    console.log(randomWord);
+    
     setRandomWord(randomWord.toUpperCase());
   }
 
   function play() {
+    document.removeEventListener('keydown', handleKeyDown)
+
     const currentRowValue = Object.values(rowsValue[attempt]).map(String)
     if (currentRowValue.includes('')) {
       return alert("Erro, Todas as Celulas Precisam Ser Preenchidas");
@@ -88,17 +94,20 @@ export function Game() {
     generateWord();
   }
 
-  function handleKeyDown(event: React.KeyboardEvent) {
+  function handleKeyDown(event: any) {
     if (event.code === "Enter") {
+      if (isFinaly) {
+        return restartGame()
+      }
       play();
     }
   }
 
   return (
-  <S.Game>
+  <S.Game onKeyDown={handleKeyDown}>
    <GameContext.Provider value={valueContextFactory}>
     <Text attempt={attempt} isFinaly={isFinaly} word={randomWord} key={10}/>
-    <ul onKeyDown={handleKeyDown}>
+    <ul>
       <Row rowIndex={0} key={0}/>
       <Row rowIndex={1} key={1}/>
       <Row rowIndex={2} key={2}/>
