@@ -10,6 +10,15 @@ export interface RowValue {
   5: string
 }
 
+export interface GameContextValue {
+  attempt: number
+  rowsValue: RowValue[]
+  resetGame: boolean
+  inputToFocus: number
+  setInputToFocus: React.Dispatch<React.SetStateAction<number>>
+  setRowsValue: React.Dispatch<React.SetStateAction<RowValue[]>>
+}
+
 export const GameContext = React.createContext({});
 
 export function Game() {
@@ -22,10 +31,12 @@ export function Game() {
     {0: '', 1: '', 2: '', 3: '', 4: '', 5: ''}
   ])
 
+  const [ attempt, setAttempt ] = useState(0)
   const [ inputToFocus, setInputToFocus ] = useState(0)
   const [ resetGame, setResetGame ] = useState(false)
 
-  const valueContextFactory = {
+  const valueContextFactory: GameContextValue = {
+    attempt,
     rowsValue,
     setRowsValue,
     resetGame,
@@ -36,7 +47,6 @@ export function Game() {
   return (
   <S.Game>
    <GameContext.Provider value={valueContextFactory}>
-
    </GameContext.Provider>
   </S.Game>
   )
